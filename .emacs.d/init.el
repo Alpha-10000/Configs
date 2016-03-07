@@ -75,8 +75,8 @@
 (add-to-list 'auto-mode-alist '("\\.ti[gh]$" . tiger-mode))
 
 ;; Mouse
-(xterm-mouse-mode t)
 (setq x-select-enable-clipboard t)
+(setq xterm-mouse-mode t)
 (setq mouse-wheel-scroll-amount'(1 ((shift). 1)))
 
 ;; Kernel dev
