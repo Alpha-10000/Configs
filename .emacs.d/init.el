@@ -74,6 +74,11 @@
 (autoload 'tiger-mode "tiger" "Load tiger-mode" t)
 (add-to-list 'auto-mode-alist '("\\.ti[gh]$" . tiger-mode))
 
+;; Mouse
+(xterm-mouse-mode t)
+(setq x-select-enable-clipboard t)
+(setq mouse-wheel-scroll-amount'(1 ((shift). 1)))
+
 ;; Kernel dev
 (defun c-lineup-arglist-tabs-only (ignored)
     "Line up argument lists by tabs, not spaces"
@@ -83,7 +88,6 @@
 	   (steps (floor offset c-basic-offset)))
       (* (max steps 1)
 	 c-basic-offset)))
-
 (add-hook 'c-mode-common-hook
 	  (lambda ()
 	    ;; Add kernel style
@@ -93,7 +97,6 @@
 			(arglist-cont-nonempty
 			 c-lineup-gcc-asm-reg
 			 c-lineup-arglist-tabs-only))))))
-
 (add-hook 'c-mode-hook
 	  (lambda ()
 	    (let ((filename (buffer-file-name)))
