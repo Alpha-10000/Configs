@@ -12,8 +12,9 @@
 (column-number-mode t) ;;Column number
 (setq ring-bell-function 'ignore) ;;Disable sound signal
 
-(setq c-default-style "bsd") ;;Indent style
-(setq c-basic-offset 2) ;;Tab size
+(setq c-default-indent-tabs-mode nil)
+(setq c-default-style "bsd") ;;Indent styl
+(setq c-basic-offset 4) ;;Tab size
 
 (setq-default make-backup-files nil) ;;Disable temp files
 (setq scroll-step 1) ;;Scroll one line
@@ -70,7 +71,6 @@
 (put 'erase-buffer 'disabled nil)
 
 ;; Tiger
-(add-to-list 'load-path "~/.emacs.d/tiger")
 (autoload 'tiger-mode "tiger" "Load tiger-mode" t)
 (add-to-list 'auto-mode-alist '("\\.ti[gh]$" . tiger-mode))
 
@@ -79,7 +79,7 @@
 (setq xterm-mouse-mode t)
 (setq mouse-wheel-scroll-amount'(1 ((shift). 1)))
 
-;; Kernel dev
+;; Kernel
 (defun c-lineup-arglist-tabs-only (ignored)
     "Line up argument lists by tabs, not spaces"
     (let* ((anchor (c-langelem-pos c-syntactic-element))
@@ -102,8 +102,22 @@
 	    (let ((filename (buffer-file-name)))
 	      ;; Enable kernel mode for the appropriate files
 	      (when (and filename
-			 (string-match (expand-file-name "~/project-path")
+			 (string-match (expand-file-name "/path/to/kernel")
 				       filename))
 		(setq indent-tabs-mode t)
 		(setq show-trailing-whitespace t)
 		(c-set-style "linux-tabs-only")))))
+
+;; rust
+(autoload 'rust-mode "rust-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+
+;; llvm, table-gen
+(setq load-path
+      (cons (expand-file-name "/path/to/llvm/utils/emacs") load-path))
+
+(require 'llvm-mode)
+(require 'tablegen-mode)
+
+;; go
+(require 'go-mode)
