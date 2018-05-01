@@ -1,7 +1,7 @@
 (set-language-environment "UTF-8")
 
 ;;Path for plugins
-(add-to-list 'load-path "/home/alpha/.emacs.d/plugins")
+(add-to-list 'load-path "~/.emacs.d/plugins")
 
 ;;When using custom method
 (setq custom-file "~/.emacs.d/custom.el")
@@ -13,7 +13,7 @@
 (setq ring-bell-function 'ignore) ;;Disable sound signal
 
 (setq c-default-indent-tabs-mode nil)
-(setq c-default-style "bsd") ;;Indent styl
+(setq c-default-style "bsd") ;;Indent style
 (setq c-basic-offset 4) ;;Tab size
 
 (setq-default make-backup-files nil) ;;Disable temp files
@@ -47,7 +47,7 @@
 (add-hook 'after-change-major-mode-hook 'fci-mode)
 (setq fci-rule-column 80)
 (setq fci-rule-width 1)
-(setq fci-rule-color "darkblue")
+(setq fci-rule-color "blue")
 (setq fci-style 'shading)
 
 ;;Highlight characters over the limit
