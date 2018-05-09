@@ -79,6 +79,15 @@
 (setq xterm-mouse-mode t)
 (setq mouse-wheel-scroll-amount'(1 ((shift). 1)))
 
+;;Use region as the isearch text
+(defun search-with-region ()
+  (when mark-active
+    (let ((region (funcall region-extract-function nil)))
+      (deactivate-mark)
+      (isearch-push-state)
+      (isearch-yank-string region))))
+(add-hook 'isearch-mode-hook #'search-with-region)
+
 ;; Kernel
 (defun c-lineup-arglist-tabs-only (ignored)
     "Line up argument lists by tabs, not spaces"
